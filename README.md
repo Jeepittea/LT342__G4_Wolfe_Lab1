@@ -1,16 +1,206 @@
-# React + Vite
+📌 MiniApp – Simple Auth System (Lab Project)
+📖 Project Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple authentication system built for our System Integration & Architecture lab activity.
 
-Currently, two official plugins are available:
+It demonstrates:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+User registration
 
-## React Compiler
+User login
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Basic REST API using Spring Boot
 
-## Expanding the ESLint configuration
+A web frontend (React + Vite) that will consume the API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Data storage using MySQL
+
+⚠️ For now, passwords are stored in plain text (for school/demo purposes only).
+
+🛠️ Tech Stack
+Backend
+
+Java
+
+Spring Boot
+
+Spring Data JPA (Hibernate)
+
+MySQL
+
+Maven
+
+Web (Frontend)
+
+React (Vite)
+
+JavaScript
+
+HTML, CSS
+
+Node.js / npm
+
+📂 Project Structure
+LT342_G4_Wolfe_Lab1/
+ ├── Backend/        (Spring Boot backend)
+ ├── web/            (React frontend)
+ ├── Docs/
+ ├── README.md
+ └── TASKLIST.md
+
+⚙️ Database Setup (MySQL)
+
+Open phpMyAdmin or MySQL client
+
+Create a database:
+
+CREATE DATABASE miniapp_db;
+
+
+Make sure your application.properties (or application.yml) contains something like:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/miniapp_db
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+Run the backend once — Hibernate will auto-create the tables.
+
+▶️ How to Run Backend (Spring Boot)
+
+Open the Backend project in IntelliJ
+
+Make sure MySQL (XAMPP) is running
+
+Open:
+
+MiniappApplication.java
+
+
+Click Run ▶️
+
+If successful, you should see in logs:
+
+Tomcat started on port(s): 8080
+
+
+Backend will run at:
+
+http://localhost:8080
+
+▶️ How to Run Web (React)
+
+Open PowerShell / Terminal
+
+Go to the web folder:
+
+cd LT342_G4_Wolfe_Lab1\web
+
+
+Install dependencies (first time only):
+
+npm install
+
+
+Start the dev server:
+
+npm run dev
+
+
+Open the shown URL (usually):
+
+http://localhost:5173
+
+🔧 Environment / Config Notes
+Backend
+
+Port: 8080
+
+Database: miniapp_db
+
+Config file:
+src/main/resources/application.properties
+
+Web
+
+API Base URL (example):
+
+http://localhost:8080/api
+
+
+Make sure your frontend uses the correct backend URL.
+
+🔌 API Endpoints
+
+Base path:
+
+/api/auth
+
+✅ Register User
+
+POST /api/auth/register
+
+Body (JSON):
+
+{
+  "username": "justin",
+  "password": "123456"
+}
+
+
+Response:
+
+200 OK → User registered successfully
+
+400 Bad Request → Username already exists
+
+✅ Login User
+
+POST /api/auth/login
+
+Body (JSON):
+
+{
+  "username": "justin",
+  "password": "123456"
+}
+
+
+Response:
+
+200 OK → Login successful
+
+401 Unauthorized → Invalid username or password
+
+🧪 Testing the API
+
+You can use:
+
+Postman
+
+Thunder Client
+
+Or any REST client
+
+Example URL:
+
+http://localhost:8080/api/auth/login
+
+📌 Notes
+
+This project is for educational purposes
+
+Passwords are not encrypted yet
+
+Future improvements:
+
+Password hashing
+
+JWT authentication
+
+Role-based access
+
+Better UI
